@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class PracticeMain {
     public static void main(String[] args) {
-        System.out.println("sameNumberOfFactors: "+ sameNumberOfFactors(6, 6));
+        System.out.println("sameNumberOfFactors: "+ sameNumberOfFactors(0, 0));
 
         int[] input = { 10, 3, 3, 3, 4, 4, 4, 5, 5};
         System.out.println("isStepped: " + isStepped(input));
@@ -14,6 +14,10 @@ public class PracticeMain {
     private static int sameNumberOfFactors(int num1, int num2) {
         if (num1 < 0 || num2 < 0) {
             return -1;
+        }
+
+        if (num1 == num2) {
+            return 1;
         }
 
         int num1Factors = 2;
