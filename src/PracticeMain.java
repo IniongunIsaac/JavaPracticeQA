@@ -1,14 +1,43 @@
-import java.util.HashMap;
+import java.util.*;
 
 public class PracticeMain {
     public static void main(String[] args) {
-        System.out.println("sameNumberOfFactors: "+ sameNumberOfFactors(0, 0));
+        System.out.println("sameNumberOfFactors: " + sameNumberOfFactors(0, 0));
 
         int[] input = { 10, 3, 3, 3, 4, 4, 4, 5, 5};
         System.out.println("isStepped: " + isStepped(input));
 
         int[] paired = { 8, 8, 8, 8, 7, 7, 7 };
         System.out.println("isPaired: " + isPairedN(paired, 15));
+
+        String[] strings = { "good", "better", "best", "best", "first", "last", "last", "last", "good" };
+        List<String> items = new ArrayList<>(List.of(strings));
+        removeDuplicates(items);
+
+        int[] sums = {1, 2, 3, 4, 5};
+        System.out.println(testForSum(sums, 20));
+
+        ObjectLinkedList linkedList = new ObjectLinkedList();
+        String[] inputList = {"Straight", "Bent", "Equals", "Well", "Storm"};
+        for (String s : inputList) {
+            linkedList.add(s);
+        }
+
+        System.out.println("Input List => " + Arrays.toString(inputList));
+        System.out.println("Search result for: " + "Well => " + linkedList.find("Well"));
+        System.out.println("Search result for: " + "WellX => " + linkedList.find("WellX"));
+        System.out.println(linkedList);
+
+        GenericLinkedList<String> genericLinkedList = new GenericLinkedList<>();
+        for (String s : inputList) {
+            genericLinkedList.add(s);
+        }
+
+        System.out.println("========================================================");
+        System.out.println("Input List => " + Arrays.toString(inputList));
+        System.out.println("Search result for: " + "Well => " + genericLinkedList.find("Well"));
+        System.out.println("Search result for: " + "WellX => " + genericLinkedList.find("WellX"));
+        System.out.println(genericLinkedList);
     }
 
     private static int sameNumberOfFactors(int num1, int num2) {
@@ -123,5 +152,34 @@ public class PracticeMain {
         }
 
         return 0; // array is not paired-N
+    }
+
+    private static <T> void removeDuplicates(List<T> items) {
+        if (items == null) {
+            return;
+        }
+        Set<T> set = new LinkedHashSet<>(items);
+        items.clear();
+        items.addAll(set);
+
+        System.out.println(items);
+    }
+
+    private static boolean testForSum(int[] intArray, int testInt) {
+        if (intArray.length < 3) {
+            return false;
+        }
+
+        for (int i : intArray) {
+            for (int j : intArray) {
+                for (int k : intArray) {
+                    if ((i != j) && (i != k) && (j != k) && (i + j + k == testInt)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
