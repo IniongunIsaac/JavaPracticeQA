@@ -38,6 +38,15 @@ public class PracticeMain {
         System.out.println("Search result for: " + "Well => " + genericLinkedList.find("Well"));
         System.out.println("Search result for: " + "WellX => " + genericLinkedList.find("WellX"));
         System.out.println(genericLinkedList);
+
+        System.out.println("========================================================");
+        int[] intArray = {1, 5, 4, 2};
+        ArrayList<int[]> permutations = permutations(intArray);
+        for (int[] permutation : permutations) {
+            System.out.println(Arrays.toString(permutation));
+        }
+        //System.out.println(permutations(intArray));
+
     }
 
     private static int sameNumberOfFactors(int num1, int num2) {
@@ -181,5 +190,52 @@ public class PracticeMain {
         }
 
         return false;
+    }
+
+    private static ArrayList<ArrayList<Integer>> integerPermutations(int[] intArray) {
+        ArrayList<ArrayList<Integer>> permutations = new ArrayList<>();
+
+        for (int i : intArray) {
+            ArrayList<Integer> integers = new ArrayList<>();
+            integers.add(i);
+            for (int j : intArray) {
+                if (i != j) {
+                    integers.add(j);
+                }
+            }
+            permutations.add(integers);
+        }
+
+        return permutations;
+    }
+
+    public static ArrayList<int[]> permutations(int[] arr) {
+        ArrayList<int[]> result = new ArrayList<>();
+        if (arr.length == 0) {
+            result.add(new int[0]);
+            return result;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            int[] subArr = new int[arr.length - 1];
+            for (int j = 0; j < i; j++) {
+                subArr[j] = arr[j];
+            }
+            for (int j = i + 1; j < arr.length; j++) {
+                subArr[j - 1] = arr[j];
+            }
+
+            ArrayList<int[]> subResult = permutations(subArr);
+            for (int[] sub : subResult) {
+                int[] perm = new int[arr.length];
+                perm[0] = arr[i];
+                for (int j = 0; j < sub.length; j++) {
+                    perm[j + 1] = sub[j];
+                }
+                result.add(perm);
+            }
+        }
+
+        return result;
     }
 }
