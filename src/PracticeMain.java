@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PracticeMain {
     public static void main(String[] args) {
-        System.out.println("sameNumberOfFactors: " + sameNumberOfFactors(0, 0));
+        /*System.out.println("sameNumberOfFactors: " + sameNumberOfFactors(0, 0));
 
         int[] input = { 10, 3, 3, 3, 4, 4, 4, 5, 5};
         System.out.println("isStepped: " + isStepped(input));
@@ -44,8 +44,10 @@ public class PracticeMain {
         ArrayList<int[]> permutations = permutations(intArray);
         for (int[] permutation : permutations) {
             System.out.println(Arrays.toString(permutation));
-        }
-        //System.out.println(permutations(intArray));
+        } */
+
+        int[] items = {3, 2, 1, 4, 5};
+        System.out.println(isCentered(items));
 
     }
 
@@ -237,5 +239,22 @@ public class PracticeMain {
         }
 
         return result;
+    }
+
+    private static int isCentered(int[] inputArray) {
+        if (inputArray.length % 2 == 0) {
+            return 0;
+        }
+
+        int middleIndex = inputArray.length / 2;
+        int middleElement = inputArray[middleIndex];
+
+        for (int i = 0; i < inputArray.length; i++) {
+            if (i != middleIndex && inputArray[i] <= middleElement) {
+                return 0;
+            }
+        }
+
+        return 1;
     }
 }
