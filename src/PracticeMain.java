@@ -57,9 +57,15 @@ public class PracticeMain {
         char[] items = {'a', 'b', 'c'};
         char[] subItems = subArrayBetweenRange(items, 1, -2);
         System.out.println(Arrays.toString(subItems));
-         */
+
 
         System.out.println(reverseInteger(1000));
+         */
+
+        int[] first = {1, 8, 3, 2, 6};
+        int[] second = {2, 6, 1};
+        int[] common = commonIntegers(first, second);
+        System.out.println(Arrays.toString(common));
     }
 
     private static int sameNumberOfFactors(int num1, int num2) {
@@ -317,6 +323,33 @@ public class PracticeMain {
             num /= 10;
         }
         return reversed;
+    }
+
+    private static int[] commonIntegers(int[] first, int[] second) {
+        if (first == null || second == null) {
+            return null;
+        }
+
+        if (first.length == 0 || second.length == 0) {
+            return new int[0];
+        }
+
+        ArrayList<Integer> common = new ArrayList<>();
+
+        for (int j : first) {
+            for (int k : second) {
+                if (j == k) {
+                    common.add(j);
+                }
+            }
+        }
+
+        int[] commonInts = new int[common.size()];
+        for (int i = 0; i < common.size(); i++) {
+            commonInts[i] = common.get(i);
+        }
+
+        return commonInts;
     }
 
 }
