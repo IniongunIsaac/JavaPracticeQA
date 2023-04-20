@@ -60,12 +60,16 @@ public class PracticeMain {
 
 
         System.out.println(reverseInteger(1000));
-         */
+
 
         int[] first = {1, 8, 3, 2, 6};
         int[] second = {2, 6, 1};
         int[] common = commonIntegers(first, second);
         System.out.println(Arrays.toString(common));
+         */
+
+        int[] items = {1, 2, 10, 3, 4};
+        System.out.println(pointOfEquilibrium(items));
     }
 
     private static int sameNumberOfFactors(int num1, int num2) {
@@ -350,6 +354,42 @@ public class PracticeMain {
         }
 
         return commonInts;
+    }
+
+    private static int pointOfEquilibrium(int[] items) {
+        if (items == null || items.length == 0) {
+            return -1;
+        }
+
+        for (int i = 1; i < items.length; i++) {
+            int[] left = subArray(items, 0, i);
+            int[] right = subArray(items, i + 1, items.length);
+            int leftSum = sum(left);
+            int rightSum = sum(right);
+
+            if (leftSum == rightSum) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static int[] subArray(int[] items, int start, int end) {
+        int length = (end - start);
+        int[] newArray = new int[length];
+
+        System.arraycopy(items, start, newArray, 0, length);
+
+        return newArray;
+    }
+
+    private static int sum(int[] input) {
+        int sum = 0;
+        for (int i : input) {
+            sum += i;
+        }
+        return sum;
     }
 
 }
