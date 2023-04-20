@@ -44,11 +44,22 @@ public class PracticeMain {
         ArrayList<int[]> permutations = permutations(intArray);
         for (int[] permutation : permutations) {
             System.out.println(Arrays.toString(permutation));
-        } */
+        }
 
         int[] items = {3, 2, 1, 4, 5};
         System.out.println(isCentered(items));
 
+
+        int[] items = {1, 2, 3};
+        System.out.println(evenOddNumbersVariant(items));
+
+
+        char[] items = {'a', 'b', 'c'};
+        char[] subItems = subArrayBetweenRange(items, 1, -2);
+        System.out.println(Arrays.toString(subItems));
+         */
+
+        System.out.println(reverseInteger(1000));
     }
 
     private static int sameNumberOfFactors(int num1, int num2) {
@@ -257,4 +268,55 @@ public class PracticeMain {
 
         return 1;
     }
+
+    private static int evenOddNumbersVariant(int[] items) {
+        if (items.length == 0) {
+            return 0;
+        }
+
+        int oddSum = 0;
+        int evenSum = 0;
+
+        for (int item : items) {
+            if (item % 2 == 0) {
+                evenSum += item;
+            } else {
+                oddSum += item;
+            }
+        }
+
+        return oddSum - evenSum;
+    }
+
+    private static char[] subArrayBetweenRange(char[] inputArray, int start, int length) {
+        if (inputArray.length == 0 || start < 0 || length < 0 ||
+                length > inputArray.length - 1 || start > inputArray.length - 1 ||
+                (start == inputArray.length - 1 && length >= inputArray.length - 1)) {
+            return null;
+        }
+
+        char[] items = new char[length];
+
+//        for (int i = start; i < length; i++) {
+//            items[i] = inputArray[i];
+//        }
+
+        System.arraycopy(inputArray, start, items, 0, length);
+
+        return items;
+    }
+
+    public static int reverseInteger(int num) {
+        if (num == 0) {
+            return 0;
+        }
+        int reversed = 0;
+        while (num != 0) {
+            int digit = num % 10;
+            reversed = reversed * 10 + digit;
+            num /= 10;
+        }
+        return reversed;
+    }
+
 }
